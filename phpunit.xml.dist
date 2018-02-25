@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<phpunit colors="true" bootstrap="vendor/autoload.php" processIsolation="false">
+    <php>
+        <ini name="error_reporting" value="-1" />
+        <server name="KERNEL_DIR" value="tests/fixtures" />
+    </php>
+
+    <testsuites>
+        <testsuite name="DoctrineBundle for the Symfony Framework">
+            <directory>./tests/testsuite</directory>
+        </testsuite>
+    </testsuites>
+
+    <filter>
+        <whitelist>
+            <directory>.</directory>
+            <exclude>
+                <directory>./Resources</directory>
+                <directory>./Tests</directory>
+                <directory>./vendor</directory>
+            </exclude>
+        </whitelist>
+    </filter>
+</phpunit>

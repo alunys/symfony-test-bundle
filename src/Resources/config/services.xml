@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services
+        http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="Alunys\TestBundle\Service\Database\DataFixturesLoader" class="Doctrine\Common\DataFixtures\Loader">
+        </service>
+
+        <service id="Alunys\TestBundle\Service\Database\SqliteLoaderPlugin" class="Alunys\TestBundle\Service\Database\SqliteLoaderPlugin">
+            <argument key="$managerRegistry" type="service" id="doctrine" />
+            <argument key="$dataFixturesloader" type="service" id="Alunys\TestBundle\Service\Database\DataFixturesLoader" />
+            <tag name="alunys.test.database_loader" plugin_id="sqlite_loader"/>
+        </service>
+
+        <service id="Alunys\TestBundle\Service\Database\DatabaseLoaderPluginLocator" class="Symfony\Component\DependencyInjection\ServiceLocator" public="true">
+            <tag name="container.service_locator" />
+        </service>
+    </services>
+
+</container>
