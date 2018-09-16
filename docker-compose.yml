@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+    php-symfony-test-bundle:
+        build:
+            context: .
+            dockerfile: ./Dockerfile
+        volumes:
+            - .:/srv/symfony-test-bundle:rw
