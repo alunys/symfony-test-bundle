@@ -1,10 +1,10 @@
 <?php
 
-namespace Alunys\TestBundle;
+namespace Alunys\SymfonyTestBundle;
 
-use Alunys\TestBundle\DependencyInjection\AlunysTestExtension;
-use Alunys\TestBundle\DependencyInjection\DatabaseLoaderPluginPass;
-use Alunys\TestBundle\DependencyInjection\DataFixturesPass;
+use Alunys\SymfonyTestBundle\DependencyInjection\AlunysTestExtension;
+use Alunys\SymfonyTestBundle\DependencyInjection\DatabaseLoaderPluginPass;
+use Alunys\SymfonyTestBundle\DependencyInjection\DataFixturesPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 

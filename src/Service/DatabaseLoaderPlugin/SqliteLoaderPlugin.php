@@ -1,6 +1,6 @@
 <?php
 
-namespace Alunys\TestBundle\Service\Database;
+namespace Alunys\SymfonyTestBundle\Service\DatabaseLoaderPlugin;
 
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\ORM\Tools\SchemaTool;
@@ -35,7 +35,7 @@ class SqliteLoaderPlugin implements DatabaseLoaderPluginInterface
     public function loadDatabase(bool $forceRecreate = false)
     {
         if ($forceRecreate || !self::$databaseCreated) {
-            $this->build();
+            $this->createTmpDatabase();
         } else {
             $this->checkConnectionPathParameter($params = $this->managerRegistry->getConnection()->getParams());
 
@@ -49,7 +49,7 @@ class SqliteLoaderPlugin implements DatabaseLoaderPluginInterface
         $this->managerRegistry->getManager()->clear();
     }
 
-    protected function build()
+    protected function createTmpDatabase()
     {
         /* @var \Doctrine\DBAL\Connection $connection */
         $connection = $this->managerRegistry->getConnection();

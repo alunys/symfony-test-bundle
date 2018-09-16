@@ -5,16 +5,16 @@
         http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
-        <service id="Alunys\TestBundle\Service\Database\DataFixturesLoader" class="Doctrine\Common\DataFixtures\Loader">
+        <service id="alunys.symfony_test_bundle.service.database.data_fixtures_loader" class="Doctrine\Common\DataFixtures\Loader">
         </service>
 
-        <service id="Alunys\TestBundle\Service\Database\SqliteLoaderPlugin" class="Alunys\TestBundle\Service\Database\SqliteLoaderPlugin">
+        <service id="Alunys\SymfonyTestBundle\Service\DatabaseLoaderPlugin\SqliteLoaderPlugin" class="Alunys\SymfonyTestBundle\Service\DatabaseLoaderPlugin\SqliteLoaderPlugin">
             <argument key="$managerRegistry" type="service" id="doctrine" />
-            <argument key="$dataFixturesloader" type="service" id="Alunys\TestBundle\Service\Database\DataFixturesLoader" />
-            <tag name="alunys.test.database_loader" plugin_id="sqlite_loader"/>
+            <argument key="$dataFixturesloader" type="service" id="alunys.symfony_test_bundle.service.database.data_fixtures_loader" />
+            <tag name="alunys.test.database_loader_plugin"/>
         </service>
 
-        <service id="Alunys\TestBundle\Service\Database\DatabaseLoaderPluginLocator" class="Symfony\Component\DependencyInjection\ServiceLocator" public="true">
+        <service id="alunys.symfony_test_bundle.service.database.database_loader_plugin_locator" class="Symfony\Component\DependencyInjection\ServiceLocator" public="true">
             <tag name="container.service_locator" />
         </service>
     </services>

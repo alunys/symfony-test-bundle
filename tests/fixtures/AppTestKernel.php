@@ -15,7 +15,7 @@ class AppTestKernel extends Kernel
             new Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
-            new Alunys\TestBundle\AlunysTestBundle(),
+            new Alunys\SymfonyTestBundle\AlunysTestBundle(),
         ];
     }
 

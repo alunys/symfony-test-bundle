@@ -1,6 +1,6 @@
 <?php
 
-namespace Alunys\TestBundle\Service\Database;
+namespace Alunys\SymfonyTestBundle\Service\DatabaseLoaderPlugin;
 
 interface DatabaseLoaderPluginInterface
 {

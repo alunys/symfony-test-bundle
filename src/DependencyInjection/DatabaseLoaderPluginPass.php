@@ -1,6 +1,6 @@
 <?php
 
-namespace Alunys\TestBundle\DependencyInjection;
+namespace Alunys\SymfonyTestBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -10,16 +10,11 @@ class DatabaseLoaderPluginPass implements CompilerPassInterface
 {
     public function process(ContainerBuilder $container)
     {
-        $databaseLoaderPluginLocatorDefinition = $container->getDefinition('Alunys\TestBundle\Service\Database\DatabaseLoaderPluginLocator');
+        $databaseLoaderPluginLocatorDefinition = $container->getDefinition('alunys.symfony_test_bundle.service.database.database_loader_plugin_locator');
 
         $pluginArguments = [];
-        foreach ($container->findTaggedServiceIds('alunys.test.database_loader') as $serviceId => $tags) {
-            foreach ($tags as $tag) {
-                if (!isset($tag['plugin_id'])) {
-                    $tag['plugin_id'] = $serviceId;
-                }
-                $pluginArguments[$tag['plugin_id']] = new Reference($serviceId);
-            }
+        foreach ($container->findTaggedServiceIds('alunys.test.database_loader_plugin') as $serviceId => $tags) {
+            $pluginArguments[$serviceId] = new Reference($serviceId);
         }
 
         $databaseLoaderPluginLocatorDefinition->addArgument($pluginArguments);

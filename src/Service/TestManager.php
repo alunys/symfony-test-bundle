@@ -1,6 +1,6 @@
 <?php
 
-namespace Alunys\TestBundle\Service;
+namespace Alunys\SymfonyTestBundle\Service;
 
 use Symfony\Bundle\FrameworkBundle\Client;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -70,9 +70,9 @@ class TestManager
     /**
      * @param bool $forceRecreate
      */
-    public function loadDatabase($databaseLoaderplugin = 'sqlite_loader', bool $forceRecreate = false)
+    public function loadDatabase($databaseLoaderplugin = 'Alunys\SymfonyTestBundle\Service\DatabaseLoaderPlugin\SqliteLoaderPlugin', bool $forceRecreate = false)
     {
-        $databaseLoaderPluginLocator = $this->getContainer()->get('Alunys\TestBundle\Service\Database\DatabaseLoaderPluginLocator');
+        $databaseLoaderPluginLocator = $this->getContainer()->get('alunys.symfony_test_bundle.service.database.database_loader_plugin_locator');
 
         $databaseLoaderPluginLocator->get($databaseLoaderplugin)->loadDatabase($forceRecreate);
     }

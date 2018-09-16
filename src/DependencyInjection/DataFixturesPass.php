@@ -1,6 +1,6 @@
 <?php
 
-namespace Alunys\TestBundle\DependencyInjection;
+namespace Alunys\SymfonyTestBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -12,7 +12,7 @@ class DataFixturesPass implements CompilerPassInterface
 
     public function process(ContainerBuilder $container)
     {
-        $dataFixturesLoaderDefinition = $container->getDefinition('Alunys\TestBundle\Service\Database\DataFixturesLoader');
+        $dataFixturesLoaderDefinition = $container->getDefinition('alunys.symfony_test_bundle.service.database.data_fixtures_loader');
         $fixturesId = $container->findTaggedServiceIds('doctrine.fixture.orm');
 
 
