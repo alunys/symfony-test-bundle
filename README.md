@@ -2,4 +2,4 @@
 
 #### commands :
 * launch docker : `docker-compose.exe up`
-* lauch tests : `docker-compose run php-symfony-core-bundle vendor/bin/phpunit`
+* lauch tests : `docker-compose run php-symfony-test-bundle vendor/bin/phpunit`
