@@ -1,6 +1,6 @@
 <?php
 
-namespace Alunys\TestBundle\Tests\Sevice;
+namespace Alunys\SymfonyTestBundle\Tests\Sevice;
 
 use Alunys\SymfonyTestBundle\Service\DatabaseLoaderPlugin\DatabaseLoaderPluginInterface;
 use Alunys\SymfonyTestBundle\Service\TestManager;
@@ -23,7 +23,6 @@ class TestManagerTest extends TestCase
         parent::setUp();
         $this->testManager = new TestManager();
     }
-
 
     public function testGetKernel()
     {

@@ -14,7 +14,7 @@ class SqliteLoaderPlugin implements DatabaseLoaderPluginInterface
 
     const FIXTURE_TAG = 'doctrine.fixture.orm';
 
-    static $databaseCreated = false;
+    public static $databaseCreated = false;
 
     /**
      * @var ManagerRegistry

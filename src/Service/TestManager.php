@@ -227,6 +227,4 @@ class TestManager
 
         return $dir;
     }
-
-
 }

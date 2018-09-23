@@ -3,12 +3,12 @@
 <phpunit colors="true" bootstrap="vendor/autoload.php" processIsolation="false">
     <php>
         <ini name="error_reporting" value="-1" />
-        <server name="KERNEL_DIR" value="tests/fixtures" />
+        <server name="KERNEL_DIR" value="tests/Fixtures" />
     </php>
 
     <testsuites>
         <testsuite name="DoctrineBundle for the Symfony Framework">
-            <directory>./tests/testsuite</directory>
+            <directory>./tests/Tests</directory>
         </testsuite>
     </testsuites>
 
