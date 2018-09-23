@@ -21,5 +21,4 @@ class AlunysTestBundle extends Bundle
     {
         return new AlunysTestExtension();
     }
-
 }
