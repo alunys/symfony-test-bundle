@@ -83,21 +83,9 @@ class TestManager
      * @param array $options
      * @return KernelInterface
      */
-    protected function createKernel(array $options = array()): KernelInterface
+    protected function createKernel(): KernelInterface
     {
-        if (isset($options['environment'])) {
-            $env = $options['environment'];
-        } elseif (isset($_ENV['APP_ENV'])) {
-            $env = $_ENV['APP_ENV'];
-        } elseif (isset($_SERVER['APP_ENV'])) {
-            $env = $_SERVER['APP_ENV'];
-        } else {
-            $env = 'test';
-        }
-
-        if (isset($options['debug'])) {
-            $debug = $options['debug'];
-        } elseif (isset($_ENV['APP_DEBUG'])) {
+        if (isset($_ENV['APP_DEBUG'])) {
             $debug = $_ENV['APP_DEBUG'];
         } elseif (isset($_SERVER['APP_DEBUG'])) {
             $debug = $_SERVER['APP_DEBUG'];
@@ -109,7 +97,7 @@ class TestManager
         /* @var KernelInterface $kernel */
         $kernelClass = $this->getKernelClass();
 
-        $kernel = new $kernelClass($env, $debug);
+        $kernel = new $kernelClass('test', $debug);
 
         // Boot kernel
         $kernel->boot();
