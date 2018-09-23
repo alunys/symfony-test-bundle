@@ -24,7 +24,8 @@
     "phpunit/phpunit": "^6.5",
     "symfony/yaml": "^4.0",
     "symfony/browser-kit": "^4.0",
-    "friendsofphp/php-cs-fixer": "^2.13"
+    "friendsofphp/php-cs-fixer": "^2.13",
+    "symfony/console": "^4.1"
   },
   "autoload": {
     "psr-4": {
@@ -33,7 +34,8 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "Alunys\\SymfonyTestBundle\\Tests\\": "tests/testsuite"
-    }
+      "Alunys\\SymfonyTestBundle\\Tests\\": "tests/Tests"
+    },
+    "files": ["tests/Fixtures/AppTestKernel.php"]
   }
 }

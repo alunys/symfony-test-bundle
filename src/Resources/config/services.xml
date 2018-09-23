@@ -5,6 +5,10 @@
         http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
+        <service id="Alunys\SymfonyTestBundle\Command\PhpUnitCommand" class="Alunys\SymfonyTestBundle\Command\PhpUnitCommand">
+            <tag name="console.command"/>
+        </service>
+
         <service id="alunys.symfony_test_bundle.service.database.data_fixtures_loader" class="Doctrine\Common\DataFixtures\Loader">
         </service>
 
