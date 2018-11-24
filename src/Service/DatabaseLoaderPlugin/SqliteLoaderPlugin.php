@@ -32,6 +32,14 @@ class SqliteLoaderPlugin implements DatabaseLoaderPluginInterface
         $this->dataFixturesloader = $dataFixturesloader;
     }
 
+    /**
+     * @return ManagerRegistry
+     */
+    public function getManagerRegistry(): ManagerRegistry
+    {
+        return $this->managerRegistry;
+    }
+
     public function loadDatabase(bool $forceRecreate = false)
     {
         if ($forceRecreate || !self::$databaseCreated) {

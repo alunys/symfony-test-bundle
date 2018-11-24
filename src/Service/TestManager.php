@@ -2,6 +2,7 @@
 
 namespace Alunys\SymfonyTestBundle\Service;
 
+use Alunys\SymfonyTestBundle\Service\DatabaseLoaderPlugin\DatabaseLoaderPluginInterface;
 use Symfony\Bundle\FrameworkBundle\Client;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\DependencyInjection\ResettableContainerInterface;
@@ -31,7 +32,7 @@ class TestManager
     /**
      * @return ContainerInterface
      */
-    public function getContainer():ContainerInterface
+    public function getContainer(): ContainerInterface
     {
         return $this->getKernel()->getContainer();
     }
@@ -68,13 +69,18 @@ class TestManager
     }
 
     /**
+     * @param string $databaseLoaderpluginIdentifier
      * @param bool $forceRecreate
+     * @return DatabaseLoaderPluginInterface
      */
-    public function loadDatabase($databaseLoaderplugin = 'Alunys\SymfonyTestBundle\Service\DatabaseLoaderPlugin\SqliteLoaderPlugin', bool $forceRecreate = false)
+    public function loadDatabase($databaseLoaderpluginIdentifier = 'Alunys\SymfonyTestBundle\Service\DatabaseLoaderPlugin\SqliteLoaderPlugin', bool $forceRecreate = false): DatabaseLoaderPluginInterface
     {
         $databaseLoaderPluginLocator = $this->getContainer()->get('alunys.symfony_test_bundle.service.database.database_loader_plugin_locator');
 
-        $databaseLoaderPluginLocator->get($databaseLoaderplugin)->loadDatabase($forceRecreate);
+        $databaseLoaderpluginIdentifier = $databaseLoaderPluginLocator->get($databaseLoaderpluginIdentifier);
+        $databaseLoaderpluginIdentifier->loadDatabase($forceRecreate);
+
+        return $databaseLoaderpluginIdentifier;
     }
 
     /**
