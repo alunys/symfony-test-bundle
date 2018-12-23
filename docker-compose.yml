@@ -1,7 +1,8 @@
 version: '3.4'
 
 services:
-    php-symfony-test-bundle:
+    php:
+        image: symfony-test-bundle/php
         build:
             context: .
             dockerfile: ./Dockerfile
