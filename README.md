@@ -4,12 +4,23 @@
 
 ## Usage
 
-Use ``Alunys\SymfonyTestBundle\Service\TestManager`` in tests to retrieve function helpers. \
-The ``Alunys\SymfonyTestBundle\Service\DatabaseLoaderPlugin\SqliteLoaderPlugin`` is used by default to create a SQLite database from doctrine entities. The database created is populated from doctrine fixtures found in the project.
+Use `Alunys\SymfonyTestBundle\Service\TestManager` in tests to retrieve function helpers :
+* Load a database for test :
+```php
+use Alunys\SymfonyTestBundle\Service\TestManager;
+(new TestManager())->loadDatabase();
+```
+The `Alunys\SymfonyTestBundle\Service\DatabaseLoaderPlugin\SqliteLoaderPlugin` is used by default when calling the method `loadDatabase` : \
+1/ It creates a SQLite database from doctrine entities, it depends on the doctrine configuration. 
+```yaml
+# example of doctrine connection configuration for test
+doctrine:
+     dbal:
+         driver: 'pdo_sqlite'
+         path: '%kernel.cache_dir%/db.sqlite'
+         charset: 'UTF8'
+```
+2/  The database is populated from doctrine fixtures found in the project.
 
-### Symfony commands
-The bundle adds the commands in the project :
-* ``alunys:symfony-test-bundle:phpunit`` : run phpunit
-
-### Testing the bundle in standalone inside a docker container :
-* run : `docker-compose run php-symfony-test-bundle vendor/bin/phpunit`
+## Testing the bundle inside a docker container for dev:
+* run : `docker-compose run --rm php vendor/bin/phpunit`

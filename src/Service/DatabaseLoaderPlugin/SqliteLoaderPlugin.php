@@ -2,6 +2,8 @@
 
 namespace Alunys\SymfonyTestBundle\Service\DatabaseLoaderPlugin;
 
+use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
+use Doctrine\Common\DataFixtures\Purger\ORMPurger;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\ORM\Tools\SchemaTool;
 use Doctrine\DBAL\Driver\PDOSqlite\Driver;
@@ -79,11 +81,10 @@ class SqliteLoaderPlugin implements DatabaseLoaderPluginInterface
             unlink($params['path']);
         }
 
-        $connection->getSchemaManager()->createDatabase($params['path']);
-
         // Create tables from entities annotations
         $schemaTool = new SchemaTool($entityManager);
         try {
+            $connection->getSchemaManager()->createDatabase($params['path']);
             $schemaTool->createSchema($entityManager->getMetadataFactory()->getAllMetadata());
         } catch (\Exception $exception) {
             throw new \RuntimeException('Database could not be created', 500, $exception);
@@ -102,10 +103,9 @@ class SqliteLoaderPlugin implements DatabaseLoaderPluginInterface
     {
         $entityManager = $this->managerRegistry->getManager();
 
-        foreach ($this->dataFixturesloader->getFixtures() as $fixture) {
-            $fixture->load($entityManager);
-        }
-        $entityManager->clear();
+        $purger = new ORMPurger();
+        $executor = new ORMExecutor($entityManager, $purger);
+        $executor->execute($this->dataFixturesloader->getFixtures());
     }
 
     protected function checkConnectionPathParameter(array $params)
